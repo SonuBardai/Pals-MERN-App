@@ -1,7 +1,7 @@
 .recBarContainer {
 	padding: 32px;
 	border-radius: 12px;
-	background: #fff;
+	background: var(--white);
 	margin: 32px;
 }
 .recLabel {

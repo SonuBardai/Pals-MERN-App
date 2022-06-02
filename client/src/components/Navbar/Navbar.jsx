@@ -1,7 +1,10 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 
 const Navbar = ({ active }) => {
+	const isLoggedIn = false;
 	return (
 		<>
 			<nav className="navbar">
@@ -21,7 +24,7 @@ const Navbar = ({ active }) => {
 								: "navLinks"
 						}
 					>
-						<Link to="/">Explore</Link>
+						<Link to="/explore">Explore</Link>
 					</li>
 					<li
 						className={
@@ -30,14 +33,41 @@ const Navbar = ({ active }) => {
 								: "navLinks"
 						}
 					>
-						<Link to="/">Bookmarks</Link>
+						<Link to="/bookmarks">Bookmarks</Link>
 					</li>
 				</ul>
-				<img
-					src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
-					alt="ProfilePic"
-					className="profilePicture"
-				/>
+				{isLoggedIn ? (
+					<img
+						src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+						alt="ProfilePic"
+						className="profilePicture"
+					/>
+				) : (
+					<div className="joinLinks">
+						<Link
+							to={"/login"}
+							element={<Login />}
+							className={
+								active === "login"
+									? "navLinks active"
+									: "navLinks"
+							}
+						>
+							Login
+						</Link>
+						<Link
+							to={"/register"}
+							element={<Register />}
+							className={
+								active === "register"
+									? "navLinks active"
+									: "navLinks"
+							}
+						>
+							Register
+						</Link>
+					</div>
+				)}
 			</nav>
 		</>
 	);

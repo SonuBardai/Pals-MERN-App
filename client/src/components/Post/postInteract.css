@@ -63,5 +63,5 @@
 }
 .commentSend:hover {
 	background: var(--highlight-1);
-	color: #fff;
+	color: var(--white);
 }

@@ -1,0 +1,55 @@
+.loginContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 32px;
+}
+.loginLogo{
+	color: var(--highlight-1);
+}
+.loginBanner {
+	width: 40%;
+	height: 32rem;
+	object-fit: cover;
+	margin-left: 12px;
+	border-radius: 12px;
+}
+.loginFormContainer {
+	width: 50%;
+	height: 100%;
+	background: var(--white);
+	padding: 72px 32px;
+	margin-right: 12px;
+	border-radius: 12px;
+	text-align: center;
+}
+.loginForm {
+	margin-bottom: 32px;
+}
+.input-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 24px;
+	margin-bottom: 12px;
+}
+.input-group input {
+	padding: 8px;
+	width: 100%;
+	margin: 0 32px;
+	border: 0;
+	background: var(--bg-2);
+	border-radius: 12px;
+}
+.input-group input[type="button"] {
+	background: var(--highlight-1);
+	color: var(--white);
+	cursor: pointer;
+	transition: 0.3s;
+}
+.input-group input[type="button"]:hover {
+	background: var(--highlight-2);
+}
+.input-group input:focus {
+	outline: none;
+}

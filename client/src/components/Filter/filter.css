@@ -1,7 +1,7 @@
 .filterContent {
 	padding: 32px;
 	border-radius: 12px;
-	background: #fff;
+	background: var(--white);
 	margin: 32px 32px 12px 32px;
 	margin-top: 84px;
 	max-height: 100%;

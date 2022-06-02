@@ -7,7 +7,7 @@
 	padding: 12px;
 	border-radius: 12px;
 	margin: 32px;
-	background: #fff;
+	background: var(--white);
 	position: absolute;
 	transform: translate(0, -75%);
 	display: flex;
@@ -17,7 +17,7 @@
 	height: 130px;
 	border-radius: 12px;
 	object-fit: cover;
-	border: 5px solid #fff;
+	border: 5px solid var(--white);
 	margin: 12px;
 	margin: 25px;
 	position: absolute;
@@ -41,7 +41,7 @@
 .followInfo {
 	display: flex;
 	flex-direction: row;
-	gap: 12px; 
+	gap: 12px;
 }
 .followItem {
 	display: flex;
@@ -61,7 +61,7 @@
 	border-radius: 12px;
 	border: 0;
 	background: var(--highlight-1);
-	color: #fff;
+	color: var(--white);
 	cursor: pointer;
 	display: flex;
 	gap: 8px;

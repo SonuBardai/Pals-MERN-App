@@ -1,0 +1,7 @@
+.content {
+	display: flex;
+}
+.sideBarContainer {
+	display: flex;
+	flex-direction: column;
+}

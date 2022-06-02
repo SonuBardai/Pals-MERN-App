@@ -1,0 +1,24 @@
+.recBarContainer {
+	padding: 32px;
+	border-radius: 12px;
+	background: #fff;
+	margin: 32px;
+}
+.recLabel {
+	font-size: 1rem;
+	font-weight: 600;
+	padding-bottom: 12px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid var(--bg-2);
+}
+.recProfilePic {
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+}
+.recContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 24px;
+}

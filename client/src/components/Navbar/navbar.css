@@ -1,0 +1,43 @@
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-family: "Nunito", sans-serif;
+	background: linear-gradient(var(--bg-2), var(--bg-1));
+	margin-bottom: 18px;
+}
+.navList {
+	display: flex;
+	list-style: none;
+	gap: 25px;
+	align-items: center;
+}
+.navLinks {
+	cursor: pointer;
+	padding: 12px 12px;
+	transition: 0.5s;
+}
+.navLinks:hover {
+	background: var(--bg-2);
+}
+.navLinks a {
+	text-decoration: none;
+	color: var(--text-1);
+}
+.active a {
+	color: var(--highlight-1);
+}
+.active {
+	color: var(--highlight-1);
+	border-bottom: 2px solid var(--highlight-1);
+}
+.logo {
+	display: flex;
+	align-items: center;
+}
+.profilePicture {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}

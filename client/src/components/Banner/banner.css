@@ -11,6 +11,7 @@
 	position: absolute;
 	transform: translate(0, -75%);
 	display: flex;
+	padding-bottom: 34px;
 }
 .profilePic {
 	width: 130px;

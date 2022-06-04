@@ -2,7 +2,7 @@ import "./postInteract.css";
 import { FcLike } from "react-icons/fc";
 import { BiCommentDetail } from "react-icons/bi";
 import { BsFillSaveFill } from "react-icons/bs";
-import { AiOutlineRetweet, AiOutlineSend } from "react-icons/ai";
+import { AiOutlineRetweet, AiOutlineSend, AiOutlineHeart } from "react-icons/ai";
 
 const PostInteract = () => {
 	return (
@@ -16,7 +16,7 @@ const PostInteract = () => {
 				</div>
 				<div className="interactBtnGroup">
 					<button className="interactBtn">
-						<FcLike />
+						<AiOutlineHeart />
 						<span>Like</span>
 					</button>
 					<button className="interactBtn">

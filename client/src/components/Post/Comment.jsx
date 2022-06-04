@@ -1,5 +1,6 @@
 import "./comment.css";
 import { FcLike } from "react-icons/fc";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Comment = () => {
 	return (
@@ -19,7 +20,7 @@ const Comment = () => {
 				</div>
 				<div className="commentInteract">
 					<button className="interactBtn">
-						<FcLike />
+						<AiOutlineHeart />
 						<span>Like</span>
 					</button>
 					<span className="commentLikeCount">18 Likes</span>

@@ -8,7 +8,10 @@ const Navbar = ({ active }) => {
 	return (
 		<>
 			<nav className="navbar">
-				<h1 className="logo">pals</h1>
+				<Link to={"/"} className="logo">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABOElEQVRIie3UsStFYRjH8c8Vwx0YLBYjZVWKyd9gQCFZzGySgcVKsiDhz5BN7MpMiUXKgJIB9xjOe3Jyzj3XvZdB+dXpnJ73eb+/8zzneQ//+mvqww6ucYMD9OfklTD0NRg1cR1jJEDXwgtEjRi8YCtU0hNgDwX5uQZpnYbYE1bRhTImMRpy2jGHS3Hb1usxGA6xZyxhH48hVgmxRC3i3ldj5QexLVv6Gd7C8y5av8OqZlASt2MTC+gN8ZFQWYRDcesaMijSIO7Cvs3fMCA+BxFu81gtORsm6jQYCPeHWomJawWL34RP+fzY0zmsjObxHhb30FYAH8er7IRVPWiJ0tNxhI4G4YXfMz0d5+hOrY2l4MtFkFrqwUUAXYmnZSYFX2kGnqgTJ7Kl/wg8URkbuBf/0GZ/Ev4vH0l1lFJgud4hAAAAAElFTkSuQmCC" />
+					pals
+				</Link>
 				<ul className="navList">
 					<li
 						className={

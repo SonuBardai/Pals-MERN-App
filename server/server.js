@@ -9,6 +9,7 @@ import cors from "cors";
 
 import UserRouter from "./routers/users.js";
 import AuthRouter from "./routers/auth.js";
+import PostRouter from "./routers/posts.js";
 
 app.use((req, res, next) => {
     console.log(req.method, req.url);
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use("/auth", AuthRouter);
 app.use("/users", UserRouter);
+app.use("/posts", PostRouter);
 
 mongoose.connect(process.env.DB_URL);
 

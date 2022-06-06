@@ -1,0 +1,33 @@
+GET http://localhost/posts
+
+###
+
+GET http://localhost/posts/629daed4a48ef62ed5c6d2f1
+
+###
+
+POST http://localhost/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDUwMDQzNiwiZXhwIjoxNjU0NTAxNjM2fQ.70qFBb-8YyJDjH4-mcRULbxY6kuotO_DxxOk1GalApg
+
+{
+    "content": "Replying to Post-2",
+    "replyTo": "629daed4a48ef62ed5c6d2f1"
+}
+
+###
+
+PUT http://localhost/posts/629daed4a48ef62ed5c6d2f1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDUwMDQzNiwiZXhwIjoxNjU0NTAxNjM2fQ.70qFBb-8YyJDjH4-mcRULbxY6kuotO_DxxOk1GalApg
+
+{
+    "content": "Post-2 Updated Updated Content",
+    "image": "new post_image.jpg"
+}
+
+###
+
+DELETE http://localhost/posts/629dacbc6fb036a823334a0c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDUwMDQzNiwiZXhwIjoxNjU0NTAxNjM2fQ.70qFBb-8YyJDjH4-mcRULbxY6kuotO_DxxOk1GalApg

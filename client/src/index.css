@@ -1,40 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
 
 :root {
-	--white: #fff;
-	--bg-1: #f6f0ed;
-	--bg-2: #d2cecc;
-	--bg-3: #aca8a6;
-	--highlight-1: #38539e;
-	--highlight-2: #101d42;
-	--text-1: rgb(18, 18, 18);
-	--text-2: rgb(115, 114, 114);
-	--text-3: rgb(64, 63, 63);
+    --white: #fff;
+    --bg-1: #f6f0ed;
+    --bg-2: #d2cecc;
+    --bg-3: #aca8a6;
+    
+    --highlight-1: #38539e;
+    --highlight-2: #101d42;
+    
+    --alert-info: #38539ee2;
+    --alert-danger: #9e3838d9;
+    --alert-success: #729e38d5;
+    
+    --text-1: rgb(18, 18, 18);
+    --text-2: rgb(115, 114, 114);
+    --text-3: rgb(64, 63, 63);
 }
 
 body {
-	margin: 0;
-	font-family: "Nunito", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background: var(--bg-1);
-	color: var(--text-1);
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg-1);
+    color: var(--text-1);
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
 ::-webkit-scrollbar {
-	width: 8px;
+    width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: var(--highlight-1);
+    background-color: var(--highlight-1);
 }
 ::-webkit-scrollbar-thumb:hover {
-	background-color: var(--highlight-2);
+    background-color: var(--highlight-2);
 }
 ::-webkit-scrollbar-track {
-	background-color: var(--bg-2);
+    background-color: var(--bg-2);
 }

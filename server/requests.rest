@@ -1,0 +1,42 @@
+// Get List of all users
+GET http://localhost/users/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDQ5MzgxNCwiZXhwIjoxNjU0NDk1MDE0fQ.0dWwDXGXkZQco6v5NTND_0NRP1zcBa-QSKXfGVL3FDg
+
+###
+// Login
+POST http://localhost/auth/login
+Content-Type: application/json
+
+{
+    "email": "john@doe.com",
+    "password": "password"    
+}
+
+###
+// Logout
+DELETE http://localhost/auth/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDQ5MzgxNH0.jBuGMY0adj11A4WTzsyvlLLwUlSOFntKkPixonxyIGA"
+}
+
+### 
+// Get new Access Token
+POST http://localhost/auth/refresh
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDQ5MTU1MX0.VHABd2Y4p8VCH5Df9wDc8h7Q0mrHjmgw6HQEceT4Ivs"
+}
+
+###
+// Register
+POST http://localhost/auth/register
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@doe.com",
+    "password": "password"
+}

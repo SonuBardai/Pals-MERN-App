@@ -2,22 +2,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import Banner from "../../components/Banner/Banner";
 import Posts from "../../components/Posts/Posts";
 import Filter from "../../components/Filter/Filter";
-import Alert from "../../components/Alert/Alert";
 import RecBar from "../../components/RecBar/RecBar";
 
-import "./home.css";
-
-import { useGlobalContext } from "../../context";
-import Hero from "../../components/Hero/Hero";
-
-const Home = () => {
-    const { alert, alertCategory } = useGlobalContext();
+const Profile = () => {
     return (
         <>
             <div>
-                <Navbar active="home" />
-                {alert && <Alert alert={alert} category={alertCategory} />}
-                <Hero />
+                <Navbar />
+                <Banner />
                 <div className="content">
                     <div className="sideBarContainer">
                         <Filter />
@@ -30,4 +22,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Profile;

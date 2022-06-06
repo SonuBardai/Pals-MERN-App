@@ -1,0 +1,26 @@
+.alert {
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding: 24px 24px;
+    position: absolute;
+    transform: translate(15%, -10%);
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 10;
+    border-radius: 12px;
+    color: var(--white);
+}
+.alertClose {
+    cursor: pointer;
+}
+.alertInfo {
+    background: var(--alert-info);
+}
+.alertSuccess {
+    background: var(--alert-success);
+}
+.alertDanger {
+    background: var(--alert-danger);
+}

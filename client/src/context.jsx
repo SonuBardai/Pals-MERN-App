@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
 import { reducer } from "./reducer";
-import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
@@ -10,12 +9,12 @@ export const StateProvider = ({ children }) => {
         isLoggedIn: false,
         alert: "",
         alertCategory: "alertInfo",
-        navigator: useNavigate(),
+        posts: [],
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const setAlert = (message, category) => {
+    const setAlert = (message, category = "alertInfo") => {
         dispatch({ type: "SET_ALERT", payload: { message, category } });
     };
 
@@ -27,9 +26,29 @@ export const StateProvider = ({ children }) => {
         dispatch({ type: "SET_USER", payload: user });
     };
 
+    const addToPosts = (post) => {
+        dispatch({ type: "ADD_TO_POSTS", payload: post });
+    };
+
+    const setPosts = (posts) => {
+        dispatch({ type: "SET_POSTS", payload: posts });
+    };
+
+    const addComment = (comment) => {
+        dispatch({ type: "ADD_COMMENT", payload: comment });
+    };
+
     return (
         <AppContext.Provider
-            value={{ ...state, clearAlert, setAlert, setUser }}
+            value={{
+                ...state,
+                clearAlert,
+                setAlert,
+                setUser,
+                addToPosts,
+                setPosts,
+                addComment,
+            }}
         >
             {children}
         </AppContext.Provider>

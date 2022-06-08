@@ -3,25 +3,27 @@ import mongoose from "mongoose";
 const postSchema = new mongoose.Schema(
     {
         content: String,
+        tags: { type: [String], default: [] },
         image: { type: String, default: "" },
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
-        likedBy: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: "User",
-            default: [],
+        likes: {
+            type: Number,
+            default: 0,
         },
-        replies: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: "Post",
+        comments: {
+            type: [
+                {
+                    comment: String,
+                    commentor: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "User",
+                    },
+                },
+            ],
             default: [],
-        },
-        replyTo: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post",
-            default: null,
         },
     },
     { timestamps: true }

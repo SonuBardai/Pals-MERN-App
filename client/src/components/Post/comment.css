@@ -1,25 +1,26 @@
+.commentsContainer {
+    margin-top: 20px;
+}
 .commentContainer {
-	margin-bottom: 24px;
-	padding-bottom: 12px;
-	border-bottom: 1px solid var(--bg-2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 .commentorHead {
-	display: flex;
-	align-items: center;
-	gap: 12px;
+    display: flex;
+    flex-direction: column;
 }
 .commentText {
-	font-size: 14px;
-	margin-left: 54px;
-	color: var(--text-3);
-	margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-3);
 }
 .commentInteract {
-	display: flex;
-	gap: 18px;
+    display: flex;
+    gap: 18px;
     align-items: center;
 }
 .commentLikeCount {
-	font-size: 14px;
-	color: var(--text-2);
+    font-size: 14px;
+    color: var(--text-2);
 }

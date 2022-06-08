@@ -23,3 +23,9 @@
     font-weight: 700;
     margin: 0;
 }
+.btnGroup {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 20px;
+}

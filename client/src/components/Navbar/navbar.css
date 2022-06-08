@@ -50,3 +50,23 @@
     display: flex;
     gap: 12px;
 }
+.navProfileOptions {
+    background: var(--white);
+    padding: 8px 12px;
+    border-radius: 12px;
+    position: absolute;
+    transform: translate(-80%, -8%);
+    display: none;
+    width: 250px;
+}
+.navProfileOptions li {
+    margin: 8px;
+    padding: 8px;
+    list-style: none;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.navProfileOptions li:hover {
+    background: var(--bg-1);
+}

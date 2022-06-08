@@ -13,6 +13,14 @@ const Navbar = ({ active }) => {
         }, 2500);
     }, [alert]);
 
+    const dropDown = document.getElementsByClassName("navProfileOptions")[0];
+    const showDropDown = () => {
+        dropDown.style.display = "block";
+    };
+    const hideDropDown = () => {
+        dropDown.style.display = "none";
+    };
+
     return (
         <>
             <nav className="navbar">
@@ -48,14 +56,32 @@ const Navbar = ({ active }) => {
                     </li>
                 </ul>
                 {isLoggedIn ? (
-                    <Link to="/users/jlj" className="navUserProfile">
-                        <img
-                            src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
-                            alt={user.name}
-                            title={user.name}
-                            className="profilePicture"
-                        />
-                    </Link>
+                    <div onMouseLeave={hideDropDown}>
+                        <Link to="/users/jlj" className="navUserProfile">
+                            <img
+                                src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+                                alt={user.name}
+                                title={user.name}
+                                className="profilePicture"
+                                onMouseOver={showDropDown}
+                            />
+                        </Link>
+                        <div>
+                            <ul className="navProfileOptions">
+                                <Link to={`/users/${user.id}`}>
+                                    <li>Profile</li>
+                                </Link>
+                                <hr />
+                                <Link to={"/"}>
+                                    <li>Upload Post</li>
+                                </Link>
+                                <hr />
+                                <Link to={"/"}>
+                                    <li>Logout</li>
+                                </Link>
+                            </ul>
+                        </div>
+                    </div>
                 ) : (
                     <div className="joinLinks">
                         <Link

@@ -4,24 +4,31 @@ import Error from "./pages/Error/Error";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
+import FilteredPosts from "./pages/FilteredPosts/FilteredPosts.jsx";
 
-import { StateProvider } from "./context";
+import { useGlobalContext } from "./context";
+import { useEffect } from "react";
 
 function App() {
+    const { setUser } = useGlobalContext();
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if (user) {
+            setUser(user);
+        }
+    }, []);
+
     return (
-        <div>
-            <Router>
-                <StateProvider>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/users/:name" element={<Profile />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/*" element={<Error />} />
-                    </Routes>
-                </StateProvider>
-            </Router>
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/tags/:tag" element={<FilteredPosts />} />
+                <Route path="/users/:name" element={<Profile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/*" element={<Error />} />
+            </Routes>
+        </Router>
     );
 }
 

@@ -8,11 +8,23 @@ GET http://localhost/posts/629daed4a48ef62ed5c6d2f1
 
 POST http://localhost/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDUwMDQzNiwiZXhwIjoxNjU0NTAxNjM2fQ.70qFBb-8YyJDjH4-mcRULbxY6kuotO_DxxOk1GalApg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDY0ODkzNywiZXhwIjoxNjU0NjUwMTM3fQ._updeB-Vq8OsYtHsefOonBsfASXUDWMmDT5Rd39lSbM
 
 {
-    "content": "Replying to Post-2",
-    "replyTo": "629daed4a48ef62ed5c6d2f1"
+    "content": "Captain America",
+    "tags": ["#newPost", "#Marvel"]
+}
+
+###
+
+POST http://localhost/posts/comment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDY0ODkzNywiZXhwIjoxNjU0NjUwMTM3fQ._updeB-Vq8OsYtHsefOonBsfASXUDWMmDT5Rd39lSbM
+
+{
+    "postId": "629ff176b5f1bfb89cfb3bdc",
+    "comment": "What? 2",
+    "user": "629d88b571f45e79cd1ded09"
 }
 
 ###

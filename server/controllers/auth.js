@@ -33,7 +33,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).select("+password");
         if (user) {
             const isValid = bcrypt.compareSync(password, user.password);
             if (isValid) {

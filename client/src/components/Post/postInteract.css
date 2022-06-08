@@ -1,67 +1,62 @@
-.postInteractContainer {
-	margin-bottom: 18px;
-	padding-bottom: 12px;
-	border-bottom: 1px solid var(--bg-2);
-}
 .interactInfo {
-	display: flex;
-	gap: 12px;
-	justify-content: right;
-	margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: right;
+    margin-bottom: 12px;
 }
 .interactItem {
-	font-size: 14px;
-	color: var(--text-2);
+    font-size: 14px;
+    color: var(--text-2);
 }
 .interactBtnGroup {
-	display: flex;
-	gap: 12px;
-	margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 .interactBtn {
-	padding: 7px 18px;
-	border-radius: 12px;
-	border: none;
-	color: var(--text-3);
-	display: flex;
-	gap: 5px;
-	align-items: center;
-	cursor: pointer;
-	transition: 0.3s;
+    padding: 7px 18px;
+    border-radius: 12px;
+    border: none;
+    color: var(--text-3);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
 }
 .interactBtn:hover {
-	background: var(--bg-2);
+    background: var(--bg-2);
 }
 .postComment {
-	display: flex;
-	gap: 18px;
-	align-items: center;
+    display: flex;
+    gap: 18px;
+    align-items: center;
 }
 .commentField {
-	width: 100%;
-	padding: 12px 10px;
-	border: 1px solid var(--bg-2);
-	border-radius: 12px;
-	size: 14px;
+    width: 80%;
+    padding: 12px 10px;
+    border: 1px solid var(--bg-2);
+    border-radius: 12px;
+    size: 14px;
 }
 .commentField:focus {
-	outline: none;
+    outline: none;
 }
 .postCommentPic {
-	width: 40px;
-	height: 40px;
-	border-radius: 12px;
-	object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 .commentSend {
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
-	transition: 0.5s;
-	padding: 12px;
-	border-radius: 12px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 12px;
+    border-radius: 12px;
 }
 .commentSend:hover {
-	background: var(--highlight-1);
-	color: var(--white);
+    background: var(--highlight-1);
+    color: var(--white);
 }

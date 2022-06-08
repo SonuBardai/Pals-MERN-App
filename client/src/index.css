@@ -5,22 +5,24 @@
     --bg-1: #f6f0ed;
     --bg-2: #d2cecc;
     --bg-3: #aca8a6;
-    
+
     --highlight-1: #38539e;
     --highlight-2: #101d42;
-    
+
     --alert-info: #38539ee2;
     --alert-danger: #9e3838d9;
     --alert-success: #729e38d5;
-    
+
     --text-1: rgb(18, 18, 18);
     --text-2: rgb(115, 114, 114);
     --text-3: rgb(64, 63, 63);
+
+    --main-font: "Nunito", sans-serif;
 }
 
 body {
     margin: 0;
-    font-family: "Nunito", sans-serif;
+    font-family: var(--main-font);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: var(--bg-1);

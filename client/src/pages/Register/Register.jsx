@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Alert from "../../components/Alert/Alert";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "../../axios";
 
@@ -14,8 +14,9 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
+    const navigator = useNavigate();
 
-    const { setAlert, alert, alertCategory, navigator } = useGlobalContext();
+    const { setAlert, alert, alertCategory } = useGlobalContext();
 
     const registerUser = (name, email, password1, password2) => {
         if (name && email && password1 && password2) {

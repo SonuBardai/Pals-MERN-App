@@ -7,7 +7,7 @@ export const validateToken = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_ACCESSTOKEN_SECRET, async (err, id) => {
         if (err) {
-            return res.sendStatus(403);
+            return res.status(403).json({ message: "Access Token Expired" });
         }
         const user = await User.findById(id.id);
         req.user = user;

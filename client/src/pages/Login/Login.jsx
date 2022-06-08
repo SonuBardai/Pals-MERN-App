@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { useGlobalContext } from "../../context";
@@ -10,8 +10,9 @@ import axios from "../../axios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigator = useNavigate();
 
-    const { setAlert, alert, alertCategory, setUser, navigator } = useGlobalContext();
+    const { setAlert, alert, alertCategory, setUser } = useGlobalContext();
 
     const loginUser = () => {
         if (email && password) {
@@ -33,11 +34,20 @@ const Login = () => {
                         "accessToken",
                         response.data.accessToken
                     );
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify({
+                            id: response.data.id,
+                            email: response.data.email,
+                            name: response.data.name,
+                        })
+                    );
                     setUser({
+                        id: response.data.id,
                         email: response.data.email,
                         name: response.data.name,
                     });
-                    navigator('/')
+                    navigator("/");
                 })
                 .catch((err) => {
                     setAlert(err.response.data.message, "alertInfo");

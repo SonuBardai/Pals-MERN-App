@@ -1,0 +1,8 @@
+.tagsFilteredBy {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 60px;
+}
+.tagsFilteredBy span {
+    color: var(--highlight-1);
+}

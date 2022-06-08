@@ -9,7 +9,11 @@ const Post = ({ post }) => {
         <>
             <div className="postContainer">
                 <PostHeader />
-                <PostContent content={post.content} tags={post.tags} />
+                <PostContent
+                    content={post.content}
+                    tags={post.tags}
+                    image={post.image}
+                />
                 <PostInteract
                     postId={post._id}
                     likes={post.likes}

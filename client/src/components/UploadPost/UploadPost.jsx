@@ -9,6 +9,10 @@ import { refreshAccessToken } from "../../utils";
 const UploadPost = () => {
     const [content, setContent] = useState("");
     const [tags, setTags] = useState("");
+
+    const [image, setImage] = useState(null);
+    const [base64, setBase64] = useState("");
+
     const { addToPosts, setAlert } = useGlobalContext();
     const navigator = useNavigate();
 
@@ -18,12 +22,12 @@ const UploadPost = () => {
             navigator("/login");
             return setAlert("Please Log In To Uplaod");
         }
+        console.log(post);
         axios
             .post("/posts", post, {
                 headers: { Authorization: `Bearer ${accessToken}` },
             })
             .then((res) => {
-                console.log(res);
                 addToPosts({ ...res.data });
                 setAlert("Post Uploaded");
             })
@@ -36,6 +40,15 @@ const UploadPost = () => {
                     submitPost({ content, tags: tagArray });
                 }, setAlert)
             );
+    };
+
+    const getBase64 = (file) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            let binString = event.target.result;
+            setBase64(btoa(binString));
+        };
+        reader.readAsBinaryString(file);
     };
 
     return (
@@ -62,6 +75,28 @@ const UploadPost = () => {
                         />
                     </div>
                     <BsFillImageFill className="fileUploadIcon" />
+                    <input
+                        type="file"
+                        accept=".jpeg, .png, .jpg"
+                        onChange={(e) => {
+                            // Set image for preview
+                            setImage(e.target.files[0]);
+
+                            // Get base64 image and save to state
+                            getBase64(e.target.files[0]);
+
+                            // https://medium.com/@blturner3527/storing-images-in-your-database-with-base64-react-682f5f3921c2
+                            // https://stackoverflow.com/questions/56769076/how-to-show-base64-image-in-react
+                        }}
+                    />
+                    {image && (
+                        <>
+                            <img
+                                src={URL.createObjectURL(image)}
+                                width={"80px"}
+                            />
+                        </>
+                    )}
                 </div>
                 <button
                     onClick={(e) => {
@@ -74,7 +109,11 @@ const UploadPost = () => {
                         if (tags) {
                             tagArray = tags.split(" ");
                         }
-                        submitPost({ content, tags: tagArray });
+                        submitPost({
+                            content,
+                            tags: tagArray,
+                            image: base64,
+                        });
 
                         setContent("");
                         setTags("");

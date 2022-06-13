@@ -67,3 +67,8 @@
 .fileUploadIcon:hover {
     color: var(--highlight-2);
 }
+.closeIcon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

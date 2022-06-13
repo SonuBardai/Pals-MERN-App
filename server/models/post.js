@@ -25,6 +25,10 @@ const postSchema = new mongoose.Schema(
             ],
             default: [],
         },
+        postDate: {
+            type: Date,
+            default: new Date(),
+        },
     },
     { timestamps: true }
 );

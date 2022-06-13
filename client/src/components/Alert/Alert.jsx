@@ -8,7 +8,12 @@ const Alert = ({ alert, category }) => {
         <>
             <div className={`alert ${category}`}>
                 <span>{alert}</span>
-                <IoCloseOutline className="alertClose" onClick={clearAlert} />
+                {alert && (
+                    <IoCloseOutline
+                        className="alertClose"
+                        onClick={clearAlert}
+                    />
+                )}
             </div>
         </>
     );

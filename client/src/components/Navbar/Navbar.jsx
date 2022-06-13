@@ -4,9 +4,11 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import { useGlobalContext } from "../../context";
 import { useEffect } from "react";
+import axios from "../../axios";
 
 const Navbar = ({ active }) => {
-    const { alert, setAlert, isLoggedIn, user } = useGlobalContext();
+    const { alert, setAlert, isLoggedIn, user, setLogout } = useGlobalContext();
+    
     useEffect(() => {
         setTimeout(() => {
             setAlert("", "");
@@ -14,11 +16,30 @@ const Navbar = ({ active }) => {
     }, [alert]);
 
     const dropDown = document.getElementsByClassName("navProfileOptions")[0];
+
     const showDropDown = () => {
         dropDown.style.display = "block";
     };
+
     const hideDropDown = () => {
         dropDown.style.display = "none";
+    };
+
+    const logoutUser = () => {
+        axios
+            .post("/auth/logout", {
+                token: localStorage.getItem("refreshToken"),
+                userId: user.id,
+            })
+            .then((res) => {
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("user");
+                setAlert("You have been logged out", "alertSuccess");
+
+                setLogout();
+            })
+            .catch((err) => console.log(err));
     };
 
     return (
@@ -56,29 +77,30 @@ const Navbar = ({ active }) => {
                     </li>
                 </ul>
                 {isLoggedIn ? (
-                    <div onMouseLeave={hideDropDown}>
-                        <Link to="/users/jlj" className="navUserProfile">
-                            <img
-                                src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
-                                alt={user.name}
-                                title={user.name}
-                                className="profilePicture"
-                                onMouseOver={showDropDown}
-                            />
-                        </Link>
-                        <div>
+                    <div>
+                        <img
+                            src={
+                                user.profilePic
+                                    ? `data:image/png;base64,${user.profilePic}`
+                                    : "/default.jpg"
+                            }
+                            alt={user.name}
+                            title={user.name}
+                            className="profilePicture"
+                            onClick={showDropDown}
+                        />
+                        <div onMouseLeave={hideDropDown}>
                             <ul className="navProfileOptions">
                                 <Link to={`/users/${user.id}`}>
                                     <li>Profile</li>
                                 </Link>
                                 <hr />
-                                <Link to={"/"}>
-                                    <li>Upload Post</li>
-                                </Link>
-                                <hr />
-                                <Link to={"/"}>
-                                    <li>Logout</li>
-                                </Link>
+                                <li
+                                    style={{ color: "#a8090c" }}
+                                    onClick={logoutUser}
+                                >
+                                    Logout
+                                </li>
                             </ul>
                         </div>
                     </div>

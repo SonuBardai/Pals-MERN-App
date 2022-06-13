@@ -40,3 +40,13 @@ Content-Type: application/json
     "email": "john@doe.com",
     "password": "password"
 }
+
+###
+// Update User
+PUT http://localhost/users/users/629ff44dc09aad17c5207944
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ4OGI1NzFmNDVlNzljZDFkZWQwOSIsImlhdCI6MTY1NDczNzA4NywiZXhwIjoxNjU0NzM5Nzg3fQ.QCZxd6wV0B0NneLBX4KGtsbTS7I9W_qmpflsv9lG5Js"
+
+{
+    "description": "gkljsdlkj"
+}

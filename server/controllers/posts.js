@@ -15,7 +15,7 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
     try {
         const id = req.params.id;
-        const post = await Post.findById(id);
+        const post = await Post.findById(id).populate("user");
         res.status(200).json(post);
     } catch (error) {
         console.log(error);
@@ -26,12 +26,13 @@ export const getPost = async (req, res) => {
 export const newPost = async (req, res) => {
     try {
         const { content, image, tags } = req.body;
-        const post = await Post.create({
+        const createdPost = await Post.create({
             content,
             image,
             user: req.user.id,
             tags,
         });
+        const post = await Post.findById(createdPost.id).populate("user");
         res.status(201).send(post);
     } catch (error) {
         console.log(error);
@@ -60,7 +61,7 @@ export const updatePost = async (req, res) => {
         post.content = content;
         post.image = image;
         post.tags = tags;
-        post.save();
+        await post.save();
         res.sendStatus(202);
     } catch (error) {
         console.log(error);

@@ -4,7 +4,7 @@
     justify-content: space-around;
     font-family: "Nunito", sans-serif;
     background: linear-gradient(var(--bg-2), var(--bg-1));
-    margin-bottom: 18px;
+    margin-bottom: 18px; 
 }
 .navList {
     display: flex;

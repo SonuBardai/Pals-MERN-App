@@ -34,22 +34,20 @@ const Login = () => {
                         "accessToken",
                         response.data.accessToken
                     );
+                    console.log("Logged in as User: ", response.data);
                     localStorage.setItem(
                         "user",
                         JSON.stringify({
-                            id: response.data.id,
-                            email: response.data.email,
-                            name: response.data.name,
+                            ...response.data,
                         })
                     );
                     setUser({
-                        id: response.data.id,
-                        email: response.data.email,
-                        name: response.data.name,
+                        ...response.data,
                     });
                     navigator("/");
                 })
                 .catch((err) => {
+                    console.log(err);
                     setAlert(err.response.data.message, "alertInfo");
                 });
         } else {

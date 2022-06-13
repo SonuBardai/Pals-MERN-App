@@ -4,25 +4,33 @@ import "./posts.css";
 import { useEffect } from "react";
 import axios from "../../axios";
 
-const Posts = ({ tag }) => {
-    const { setPosts } = useGlobalContext();
-    useEffect(() => {
-        const getPosts = () => {
-            axios
-                .get("/posts")
-                .then((res) => setPosts(res.data))
-                .catch((err) => console.log(err));
-        };
-        getPosts();
-    }, []);
+const Posts = ({ tag, user }) => {
+    const { setPosts, posts } = useGlobalContext();
 
-    let { posts } = useGlobalContext();
-    if (tag) {
-        const newPosts = posts.filter((post) => {
-            return post.tags.includes(`#${tag}`);
-        });
-        posts = newPosts;
-    }
+    useEffect(() => {
+        axios
+            .get("/posts")
+            .then((res) => {
+                let initPosts = res.data;
+
+                if (tag) {
+                    const newPosts = initPosts.filter((post) => {
+                        return post.tags.includes(`#${tag}`);
+                    });
+                    initPosts = newPosts;
+                }
+
+                if (user) {
+                    const newPosts = initPosts.filter(
+                        (post) => post.user._id === user._id
+                    );
+                    initPosts = newPosts;
+                }
+
+                setPosts(initPosts);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
         <div className="postsContainer">

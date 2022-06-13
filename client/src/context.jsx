@@ -38,6 +38,10 @@ export const StateProvider = ({ children }) => {
         dispatch({ type: "ADD_COMMENT", payload: comment });
     };
 
+    const setLogout = () => {
+        dispatch({ type: "SET_LOGOUT" });
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -48,6 +52,7 @@ export const StateProvider = ({ children }) => {
                 addToPosts,
                 setPosts,
                 addComment,
+                setLogout,
             }}
         >
             {children}

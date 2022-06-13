@@ -8,7 +8,7 @@ const Post = ({ post }) => {
     return (
         <>
             <div className="postContainer">
-                <PostHeader />
+                <PostHeader user={post.user} date={new Date(post.postDate)} />
                 <PostContent
                     content={post.content}
                     tags={post.tags}

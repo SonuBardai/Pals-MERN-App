@@ -33,6 +33,9 @@ export const reducer = (state, action) => {
 
             return { ...state, posts: newPosts };
 
+        case "SET_LOGOUT":
+            return { ...state, user: null, isLoggedIn: false };
+
         default:
             return state;
     }

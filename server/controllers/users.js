@@ -1,10 +1,30 @@
 import { User } from "../models/user.js";
 
-export const getAllUsers = async (req, res) => {
+export const getUser = async (req, res) => {
+    const userId = req.params.id;
     try {
-        const users = await User.find({}).sort("-createdAt");
-        res.json(req.user);
+        const user = await User.findById(userId).populate("posts");
+        return res.status(200).json(user);
     } catch (error) {
-        res.sendStatus(500);
+        console.log(error);
+        return res.sendStatus(500);
     }
+};
+
+export const updateUserDescription = async (req, res) => {
+    const userId = req.user.id;
+    const parameterId = req.params.id;
+
+    if (userId === parameterId) {
+        const user = await User.findById(userId);
+        user.description = req.body.description;
+        user.profilePic = req.body.image;
+        user.coverPic = req.body.cover;
+
+        await user.save();
+        return res.send({ message: "Profile Modified" });
+    }
+    return res
+        .status(403)
+        .send({ message: "You are not authorized to access this route" });
 };

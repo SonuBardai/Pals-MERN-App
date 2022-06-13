@@ -39,11 +39,12 @@ export const loginUser = async (req, res) => {
             if (isValid) {
                 const refreshToken = generateRefreshToken(user.id);
                 user.refreshToken = refreshToken;
-                await user.save();
+                let tempUser = await user.save();
+                tempUser = { ...tempUser._doc, password: null };
+
                 res.status(200).json({
+                    ...tempUser,
                     id: user.id,
-                    name: user.name,
-                    email: user.email,
                     accessToken: generateAccessToken(user.id),
                     refreshToken: generateRefreshToken(user.id),
                 });
@@ -60,9 +61,9 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     if (!req.body.token) return res.sendStatus(401);
-
+    const userId = req.body.userId;
     try {
-        const user = await User.findOne({ refreshToken: req.body.token });
+        const user = await User.findById(userId);
         if (user) {
             user.refreshToken = "";
             await user.save();

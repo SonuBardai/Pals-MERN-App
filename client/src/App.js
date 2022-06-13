@@ -11,8 +11,9 @@ import { useEffect } from "react";
 
 function App() {
     const { setUser } = useGlobalContext();
+    
     useEffect(() => {
-        const user = localStorage.getItem("user");
+        const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
             setUser(user);
         }
@@ -23,7 +24,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/tags/:tag" element={<FilteredPosts />} />
-                <Route path="/users/:name" element={<Profile />} />
+                <Route path="/users/:id" element={<Profile />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/*" element={<Error />} />

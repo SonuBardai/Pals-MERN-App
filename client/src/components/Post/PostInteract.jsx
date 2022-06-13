@@ -46,6 +46,7 @@ const PostInteract = ({ postId, likes, comments }) => {
             .catch((err) =>
                 refreshAccessToken(() => submitReply(reply), setAlert)
             );
+        setComment("");
     };
 
     return (
@@ -93,7 +94,7 @@ const PostInteract = ({ postId, likes, comments }) => {
                         className="commentSend"
                         onClick={(e) => {
                             e.preventDefault();
-                            submitReply({ comment, user: JSON.parse(user) });
+                            submitReply({ comment, user });
                         }}
                     />
                 </div>

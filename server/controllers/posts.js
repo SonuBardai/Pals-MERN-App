@@ -1,4 +1,5 @@
 import { Post } from "../models/post.js";
+import { User } from "../models/user.js";
 
 export const getPosts = async (req, res) => {
     try {
@@ -80,3 +81,37 @@ export const deletePost = async (req, res) => {
         res.sendStatus(500);
     }
 };
+
+export const likePost = async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const userId = req.body.userId;
+
+        const action = req.body.action;
+
+        const user = await User.findById(userId);
+        const post = await Post.findById(postId);
+        if (action === "like") {
+            user.likedPosts.push(postId);
+            post.likes++;
+        } else {
+            const newLikedPosts = user.likedPosts.filter(
+                (post) => post._id !== postId
+            );
+            user.likedPosts = newLikedPosts;
+            if (post.likes > 0) {
+                post.likes--;
+            } else {
+                post.likes = 0;
+            }
+        }
+        await user.save();
+        await post.save();
+        return res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(500);
+    }
+};
+
+export const dislikePost = async (req, res) => {};

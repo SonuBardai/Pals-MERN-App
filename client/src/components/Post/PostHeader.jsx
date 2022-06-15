@@ -6,7 +6,11 @@ const PostHeader = ({ user, date }) => {
             <div className="postHeader">
                 <Link to={`/users/${user._id}`}>
                     <img
-                        src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+                        src={
+                            user.profilePic
+                                ? `data:image/png;base64,${user.profilePic}`
+                                : "/default.jpg"
+                        }
                         alt="profilePic"
                         className="postProfilePic"
                     />

@@ -12,10 +12,11 @@ import { useState } from "react";
 import axios from "../../axios";
 import { useGlobalContext } from "../../context";
 import { refreshAccessToken } from "../../utils";
+import { useEffect } from "react";
 
 const PostInteract = ({ postId, likes, comments }) => {
     const [comment, setComment] = useState("");
-    const { user } = useGlobalContext();
+    const { user, likePostReducer, setUser } = useGlobalContext();
     const { setAlert, addComment } = useGlobalContext();
 
     const submitReply = (reply) => {
@@ -49,6 +50,49 @@ const PostInteract = ({ postId, likes, comments }) => {
         setComment("");
     };
 
+    const likePost = (userId, action) => {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            navigator("/login");
+            return setAlert("Please Log In To Uplaod");
+        }
+
+        axios
+            .post(
+                `/posts/${postId}/like`,
+                {
+                    userId,
+                    action,
+                },
+                {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                }
+            )
+            .then((res) => {
+                likePostReducer({ postId, userId, myAction: action });
+                console.log("Before dislike: ", user.likedPosts);
+                if (action === "like") {
+                    user.likedPosts.push(postId);
+                } else {
+                    const newLikedPosts = user.likedPosts.filter(
+                        (post) => post !== postId
+                    );
+                    user.likedPosts = newLikedPosts;
+                    console.log("After dislike: ", user.likedPosts);
+                    console.log("post disliked: ", postId);
+                }
+                setUser(user);
+            })
+            .catch((err) => {
+                console.log(err);
+                if (err.response?.status === 403) {
+                    refreshAccessToken(() => likePost(userId), setAlert);
+                }
+            });
+    };
+
+    const isLiked = user.likedPosts.includes(postId);
+
     return (
         <>
             <div className="postInteractContainer">
@@ -61,10 +105,27 @@ const PostInteract = ({ postId, likes, comments }) => {
                     <span className="interactItem">5 Reposts</span>
                 </div>
                 <div className="interactBtnGroup">
-                    <button className="interactBtn">
-                        <AiOutlineHeart />
-                        <span>Like</span>
-                    </button>
+                    {isLiked ? (
+                        <button
+                            className="interactBtn"
+                            onClick={() => {
+                                likePost(user.id, "dislike");
+                            }}
+                        >
+                            <FcLike />
+                            <span>Liked</span>
+                        </button>
+                    ) : (
+                        <button
+                            className="interactBtn"
+                            onClick={() => {
+                                likePost(user.id, "like");
+                            }}
+                        >
+                            <AiOutlineHeart />
+                            <span>Like</span>
+                        </button>
+                    )}
                     <button className="interactBtn">
                         <BiCommentDetail />
                         <span>Comment</span>
@@ -80,7 +141,11 @@ const PostInteract = ({ postId, likes, comments }) => {
                 </div>
                 <div className="postComment">
                     <img
-                        src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+                        src={
+                            user.profilePic
+                                ? `data:image/png;base64,${user.profilePic}`
+                                : "/default.jpg"
+                        }
                         className="postCommentPic"
                     />
                     <input

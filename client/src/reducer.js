@@ -11,6 +11,7 @@ export const reducer = (state, action) => {
             return { ...state, alert: "" };
 
         case "SET_USER":
+            localStorage.setItem("user", JSON.stringify(action.payload));
             return { ...state, user: action.payload, isLoggedIn: true };
 
         case "ADD_TO_POSTS":
@@ -32,6 +33,26 @@ export const reducer = (state, action) => {
             });
 
             return { ...state, posts: newPosts };
+
+        case "LIKE_POST":
+            let posts = state.posts.map((post) => {
+                if (post._id === action.payload.postId) {
+                    if (action.payload.myAction === "like") {
+                        post.likes++;
+                    } else {
+                        post.likes--;
+                    }
+                }
+                return post;
+            });
+
+            let likes = state.user.likes;
+            if (action.payload.myAction === "like") {
+                likes++;
+            } else {
+                likes--;
+            }
+            return { ...state, posts, user: { ...state.user, likes } };
 
         case "SET_LOGOUT":
             return { ...state, user: null, isLoggedIn: false };

@@ -11,7 +11,7 @@ export const getUser = async (req, res) => {
     }
 };
 
-export const updateUserDescription = async (req, res) => {
+export const updateUserProfile = async (req, res) => {
     const userId = req.user.id;
     const parameterId = req.params.id;
 

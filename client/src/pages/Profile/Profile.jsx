@@ -13,19 +13,20 @@ import { refreshAccessToken } from "../../utils";
 import { useGlobalContext } from "../../context";
 
 const Profile = () => {
-    const [user, setUser] = useState(null);
+    const [currUser, setCurrUser] = useState(null);
+    const { setUser } = useGlobalContext();
 
     const [myProfile, setMyProfile] = useState(false);
 
     useEffect(() => {
         axios
             .get(`/users/${id}`)
-            .then((res) => setUser(res.data))
+            .then((res) => setCurrUser(res.data))
             .catch((err) => console.log(err));
 
         let curUser = JSON.parse(localStorage.getItem("user"));
-        console.log(curUser, id);
-        if (curUser._id === id) {
+        
+        if (curUser?._id === id) {
             setMyProfile(true);
         }
     }, []);
@@ -44,7 +45,7 @@ const Profile = () => {
 
         axios
             .put(
-                `/users/${user._id}`,
+                `/users/${currUser._id}`,
                 { description, image, cover },
                 { headers: { Authorization: `Bearer ${accessToken}` } }
             )
@@ -55,6 +56,7 @@ const Profile = () => {
                 oldUser.coverPic = cover;
                 oldUser.description = description;
                 localStorage.setItem("user", JSON.stringify(oldUser));
+                setUser(oldUser);
             })
             .catch((err) => {
                 console.error(err);
@@ -69,19 +71,19 @@ const Profile = () => {
             <div>
                 <Navbar />
                 {alert && <Alert alert={alert} category={alertCategory} />}
-                {user ? (
+                {currUser ? (
                     <div>
                         <Banner
                             myProfile={myProfile}
                             updateProfile={updateProfile}
-                            user={user}
+                            user={currUser}
                         />
                         <div className="content">
                             <div className="sideBarContainer">
                                 <Filter />
                                 <RecBar />
                             </div>
-                            <Posts user={user} />
+                            <Posts user={currUser} />
                         </div>
                     </div>
                 ) : (

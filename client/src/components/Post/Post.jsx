@@ -1,3 +1,4 @@
+import { useGlobalContext } from "../../context";
 import Comments from "./Comments";
 import "./post.css";
 import PostContent from "./PostContent";
@@ -5,6 +6,8 @@ import PostHeader from "./PostHeader";
 import PostInteract from "./PostInteract";
 
 const Post = ({ post }) => {
+    const { isLoggedIn } = useGlobalContext();
+    
     return (
         <>
             <div className="postContainer">
@@ -14,11 +17,13 @@ const Post = ({ post }) => {
                     tags={post.tags}
                     image={post.image}
                 />
-                <PostInteract
-                    postId={post._id}
-                    likes={post.likes}
-                    comments={post.comments}
-                />
+                {isLoggedIn && (
+                    <PostInteract
+                        postId={post._id}
+                        likes={post.likes}
+                        comments={post.comments}
+                    />
+                )}
                 {post.comments && <Comments comments={post.comments} />}
             </div>
         </>

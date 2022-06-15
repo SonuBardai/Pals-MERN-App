@@ -42,6 +42,13 @@ export const StateProvider = ({ children }) => {
         dispatch({ type: "SET_LOGOUT" });
     };
 
+    const likePostReducer = ({ postId, userId, myAction }) => {
+        dispatch({
+            type: "LIKE_POST",
+            payload: { postId, userId, myAction },
+        });
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -53,6 +60,7 @@ export const StateProvider = ({ children }) => {
                 setPosts,
                 addComment,
                 setLogout,
+                likePostReducer,
             }}
         >
             {children}

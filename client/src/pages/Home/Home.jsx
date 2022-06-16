@@ -2,7 +2,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import Posts from "../../components/Posts/Posts";
 import Filter from "../../components/Filter/Filter";
 import Alert from "../../components/Alert/Alert";
-import RecBar from "../../components/RecBar/RecBar";
 import Loading from "../../components/Loading/Loading";
 
 import "./home.css";
@@ -30,7 +29,6 @@ const Home = () => {
                 <div className="content">
                     <div className="sideBarContainer">
                         <Filter />
-                        <RecBar />
                     </div>
                     <Posts />
                 </div>

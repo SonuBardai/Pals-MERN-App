@@ -5,15 +5,30 @@ import Register from "../../pages/Register/Register";
 import { useGlobalContext } from "../../context";
 import { useEffect } from "react";
 import axios from "../../axios";
+import Search from "../Search/Search";
+import { useState } from "react";
 
 const Navbar = ({ active }) => {
     const { alert, setAlert, isLoggedIn, user, setLogout } = useGlobalContext();
-    
+
     useEffect(() => {
         setTimeout(() => {
             setAlert("", "");
         }, 2500);
     }, [alert]);
+
+    const [allUsers, setAllUsers] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get("/users/")
+            .then((res) => {
+                setAllUsers(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    console.log("rendered navbar");
 
     const dropDown = document.getElementsByClassName("navProfileOptions")[0];
 
@@ -76,6 +91,9 @@ const Navbar = ({ active }) => {
                         <Link to="/bookmarks">Bookmarks</Link>
                     </li>
                 </ul>
+
+                <Search allUsers={allUsers} />
+
                 {isLoggedIn ? (
                     <div>
                         <img

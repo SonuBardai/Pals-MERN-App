@@ -1,0 +1,48 @@
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.searchField {
+    padding: 8px;
+    border: 0;
+    border-radius: 12px;
+    width: 240px;
+    font-family: var(--main-font);
+}
+.searchField:focus {
+    outline: none;
+}
+.searchBtn {
+    padding: 5px 8px;
+    border: 0;
+    background: transparent;
+    border-radius: 12px;
+}
+.searchBtnIcon {
+    width: 20px;
+    height: 20px;
+}
+.searchedUsers {
+    background: var(--white);
+    position: absolute;
+    padding: 16px 8px;
+    border-radius: 12px;
+    width: 240px;
+    max-height: 200px;
+    overflow-y: auto;
+    transform: translate(0, 6%);
+}
+.userInSearch {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 12px;
+    align-items: center;
+    transition: 0.3s;
+    padding: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.userInSearch:hover {
+    background: var(--bg-2);
+}

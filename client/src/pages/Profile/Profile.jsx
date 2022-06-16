@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "../../axios";
 import { refreshAccessToken } from "../../utils";
 import { useGlobalContext } from "../../context";
+import Loading from "../../components/Loading/Loading";
 
 const Profile = () => {
     const [currUser, setCurrUser] = useState(null);
@@ -97,7 +98,7 @@ const Profile = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="logo">Loading...</div>
+                    <Loading />
                 )}
             </div>
         </>

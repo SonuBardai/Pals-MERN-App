@@ -12,7 +12,12 @@ export const reducer = (state, action) => {
 
         case "SET_USER":
             localStorage.setItem("user", JSON.stringify(action.payload));
-            return { ...state, user: action.payload, isLoggedIn: true };
+            return {
+                ...state,
+                user: action.payload,
+                isLoggedIn: true,
+                isLoading: false,
+            };
 
         case "ADD_TO_POSTS":
             state.posts.unshift(action.payload);

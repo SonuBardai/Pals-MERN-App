@@ -1,0 +1,35 @@
+.loading {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+}
+.loadingLine {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 30%;
+    border: 4px solid var(--highlight-1);
+    background: var(--highlight-1);
+    border-radius: 3px;
+    transition: 0.3s;
+    animation: lineAnim 1s linear infinite;
+    overflow-x: hidden;
+}
+@keyframes lineAnim {
+    from {
+        left: 50%;
+        width: 0%;
+    }
+    to {
+        left: 1%;
+        width: 98%;
+    }
+}
+.loadingLineBG {
+    position: absolute;
+    top: 0;
+    left: 1%;
+    width: 98%;
+    border: 4px solid var(--bg-1);
+    background: var(--bg-1);
+}

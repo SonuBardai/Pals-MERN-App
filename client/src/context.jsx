@@ -10,6 +10,7 @@ export const StateProvider = ({ children }) => {
         alert: "",
         alertCategory: "alertInfo",
         posts: [],
+        isLoading: true,
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);

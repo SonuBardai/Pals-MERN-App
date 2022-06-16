@@ -28,3 +28,43 @@ export const updateUserProfile = async (req, res) => {
         .status(403)
         .send({ message: "You are not authorized to access this route" });
 };
+
+export const followUser = async (req, res) => {
+    const { followed, follower, action } = req.body;
+
+    try {
+        const followedUser = await User.findById(followed);
+        const followerUser = await User.findById(follower);
+
+        if (action === "follow") {
+            followedUser.followers.push(follower);
+            followerUser.following.push(followed);
+        } else {
+            const newFollowers = followedUser.followers.filter(
+                (user) => user._id === follower
+            );
+            followedUser.followers = newFollowers;
+
+            const newFollowing = followerUser.following.filter(
+                (user) => user._id === followed
+            );
+            followerUser.following = newFollowing;
+        }
+
+        console.log(
+            followerUser.name,
+            followerUser.following,
+            `\n has ${action}ed the user \n`,
+            followedUser.name,
+            followedUser.followers
+        );
+
+        await followedUser.save();
+        await followerUser.save();
+
+        return res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(500);
+    }
+};

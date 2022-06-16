@@ -27,6 +27,7 @@ export const reducer = (state, action) => {
                     post.comments.push({
                         comment: action.payload.comment,
                         commentor: action.payload.commentor,
+                        commentDate: action.payload.commentDate,
                     });
                 }
                 return post;

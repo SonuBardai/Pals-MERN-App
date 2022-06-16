@@ -8,6 +8,8 @@ import PostInteract from "./PostInteract";
 const Post = ({ post }) => {
     const { isLoggedIn } = useGlobalContext();
     
+    console.log("render individual post");
+
     return (
         <>
             <div className="postContainer">

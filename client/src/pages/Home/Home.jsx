@@ -12,7 +12,7 @@ import UploadPost from "../../components/UploadPost/UploadPost";
 
 const Home = () => {
     const { alert, alertCategory, isLoggedIn } = useGlobalContext();
-
+    
     return (
         <>
             <div>

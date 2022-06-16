@@ -77,6 +77,13 @@
 .btn:hover {
     background: var(--highlight-2);
 }
+.followingBtn {
+    background: var(--bg-2);
+    color: var(--highlight-2);
+}
+.followingBtn:hover {
+    background: var(--bg-3);
+}
 .description {
     margin: 0 0 0 145px;
     font-size: 14px;

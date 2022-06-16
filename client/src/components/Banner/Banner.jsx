@@ -2,11 +2,23 @@ import "./banner.css";
 import { BsFillPersonCheckFill, BsFillPersonPlusFill } from "react-icons/bs";
 import { BiPencil } from "react-icons/bi";
 import { useState } from "react";
+import axios from "../../axios";
+import { refreshAccessToken } from "../../utils";
+import { useGlobalContext } from "../../context";
+import { useEffect } from "react";
 
 const Banner = ({ myProfile, updateProfile, user }) => {
     const [description, setDescription] = useState(user.description);
     const [image, setImage] = useState(user.profilePic);
     const [cover, setCover] = useState(user.coverPic);
+
+    useEffect(() => {
+        setDescription(user.description);
+        setImage(user.profilePic);
+        setCover(user.coverPic);
+    }, [user]);
+
+    console.log("render banner");
 
     const showEditable = () => {
         document.getElementsByClassName("editDescription")[0].style.display =
@@ -50,6 +62,53 @@ const Banner = ({ myProfile, updateProfile, user }) => {
             setCover(btoa(binString));
         };
         reader.readAsBinaryString(file);
+    };
+
+    const { user: curUser, setAlert, setUser, isLoggedIn } = useGlobalContext();
+
+    const followUser = (action) => {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            navigator("/login");
+            return setAlert("Please Log In To Uplaod");
+        }
+        axios
+            .put(
+                "/users/users/follow",
+                {
+                    follower: curUser._id,
+                    followed: user._id,
+                    action,
+                },
+                {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                }
+            )
+            .then((res) => {
+                if (action === "follow") {
+                    user.followers.push(curUser._id);
+                    curUser.following.push(user._id);
+                } else {
+                    const newFollowers = user.followers.filter(
+                        (follower) => follower !== curUser._id
+                    );
+                    user.followers = newFollowers;
+
+                    const newFollowing = curUser.following.filter(
+                        (following) => following !== user._id
+                    );
+                    curUser.following = newFollowing;
+                }
+                setUser(curUser);
+            })
+            .catch((err) => {
+                if (err.response?.status === 403) {
+                    refreshAccessToken(() => followUser(action), setAlert);
+                    console.log(err);
+                } else {
+                    console.log(err);
+                }
+            });
     };
 
     return (
@@ -132,20 +191,36 @@ const Banner = ({ myProfile, updateProfile, user }) => {
                                     </div>
                                 </div>
                             </div>
-                            {myProfile ? (
-                                <button
-                                    className="btn updateBtn"
-                                    onClick={showEditable}
-                                >
-                                    <BiPencil />
-                                    <span>Update</span>
-                                </button>
-                            ) : (
-                                <button className="btn">
-                                    <BsFillPersonPlusFill />
-                                    <span>Follow</span>
-                                </button>
-                            )}
+                            {isLoggedIn &&
+                                (myProfile ? (
+                                    <button
+                                        className="btn updateBtn"
+                                        onClick={showEditable}
+                                    >
+                                        <BiPencil />
+                                        <span>Update</span>
+                                    </button>
+                                ) : curUser.following.includes(user._id) ? (
+                                    <button
+                                        className="btn followingBtn"
+                                        onClick={() => {
+                                            followUser("unfollow");
+                                        }}
+                                    >
+                                        <BsFillPersonCheckFill />
+                                        <span>Following</span>
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="btn"
+                                        onClick={() => {
+                                            followUser("follow");
+                                        }}
+                                    >
+                                        <BsFillPersonPlusFill />
+                                        <span>Follow</span>
+                                    </button>
+                                ))}
                         </div>
                         <div>
                             <div className="description">{description}</div>

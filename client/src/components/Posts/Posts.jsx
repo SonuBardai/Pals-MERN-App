@@ -7,7 +7,7 @@ import axios from "../../axios";
 const Posts = ({ tag, user }) => {
     const { setPosts, posts } = useGlobalContext();
 
-    useEffect(() => {
+    const getAndFilterPosts = () => {
         axios
             .get("/posts")
             .then((res) => {
@@ -30,7 +30,11 @@ const Posts = ({ tag, user }) => {
                 setPosts(initPosts);
             })
             .catch((err) => console.log(err));
-    }, []);
+    };
+
+    useEffect(() => {
+        getAndFilterPosts();
+    }, [user]);
 
     return (
         <div className="postsContainer">

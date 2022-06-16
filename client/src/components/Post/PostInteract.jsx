@@ -12,7 +12,7 @@ import { useState } from "react";
 import axios from "../../axios";
 import { useGlobalContext } from "../../context";
 import { refreshAccessToken } from "../../utils";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const PostInteract = ({ postId, likes, comments }) => {
     const [comment, setComment] = useState("");
@@ -42,11 +42,16 @@ const PostInteract = ({ postId, likes, comments }) => {
                     postId,
                     comment: reply.comment,
                     commentor: reply.user,
+                    commentDate: new Date(),
                 })
             )
-            .catch((err) =>
-                refreshAccessToken(() => submitReply(reply), setAlert)
-            );
+            .catch((err) => {
+                if (err.response?.status === 403) {
+                    refreshAccessToken(() => submitReply(reply), setAlert);
+                } else {
+                    console.log(err);
+                }
+            });
         setComment("");
     };
 
@@ -84,9 +89,10 @@ const PostInteract = ({ postId, likes, comments }) => {
                 setUser(user);
             })
             .catch((err) => {
-                console.log(err);
                 if (err.response?.status === 403) {
                     refreshAccessToken(() => likePost(userId), setAlert);
+                } else {
+                    console.log(err);
                 }
             });
     };
@@ -140,14 +146,16 @@ const PostInteract = ({ postId, likes, comments }) => {
                     </button>
                 </div>
                 <div className="postComment">
-                    <img
-                        src={
-                            user.profilePic
-                                ? `data:image/png;base64,${user.profilePic}`
-                                : "/default.jpg"
-                        }
-                        className="postCommentPic"
-                    />
+                    <Link to={`/users/${user._id}`}>
+                        <img
+                            src={
+                                user.profilePic
+                                    ? `data:image/png;base64,${user.profilePic}`
+                                    : "/default.jpg"
+                            }
+                            className="postCommentPic"
+                        />
+                    </Link>
                     <input
                         type="text"
                         className="commentField"

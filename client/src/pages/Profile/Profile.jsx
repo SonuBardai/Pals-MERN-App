@@ -15,25 +15,34 @@ import { useGlobalContext } from "../../context";
 const Profile = () => {
     const [currUser, setCurrUser] = useState(null);
     const { setUser } = useGlobalContext();
-
     const [myProfile, setMyProfile] = useState(false);
 
-    useEffect(() => {
+    let { id } = useParams();
+
+    const fetchProfileData = () => {
         axios
             .get(`/users/${id}`)
-            .then((res) => setCurrUser(res.data))
+            .then((res) => {
+                setCurrUser(res.data);
+            })
             .catch((err) => console.log(err));
+    };
 
-        let curUser = JSON.parse(localStorage.getItem("user"));
-        
-        if (curUser?._id === id) {
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    useEffect(() => {
+        fetchProfileData();
+
+        if (user?._id === id) {
             setMyProfile(true);
+        } else {
+            setMyProfile(false);
         }
-    }, []);
+    }, [id]);
 
-    const { id } = useParams();
+    console.log("render profile");
 
-    const { setAlert, alert, alertCategory, setPosts } = useGlobalContext();
+    const { setAlert, alert, alertCategory } = useGlobalContext();
 
     const updateProfile = ({ description, image, cover }) => {
         const accessToken = localStorage.getItem("accessToken");
@@ -45,24 +54,25 @@ const Profile = () => {
 
         axios
             .put(
-                `/users/${currUser._id}`,
+                `/users/${user._id}`,
                 { description, image, cover },
                 { headers: { Authorization: `Bearer ${accessToken}` } }
             )
             .then((res) => {
                 setAlert(res.data.message);
-                let oldUser = JSON.parse(localStorage.getItem("user"));
-                oldUser.profilePic = image;
-                oldUser.coverPic = cover;
-                oldUser.description = description;
-                localStorage.setItem("user", JSON.stringify(oldUser));
-                setUser(oldUser);
+                user.profilePic = image;
+                user.coverPic = cover;
+                user.description = description;
+                setUser(user);
             })
             .catch((err) => {
-                console.error(err);
-                refreshAccessToken(() => {
-                    updateProfile({ description, image });
-                }, setAlert);
+                if (err.response?.status === 403) {
+                    refreshAccessToken(() => {
+                        updateProfile({ description, image });
+                    }, setAlert);
+                } else {
+                    console.log(err);
+                }
             });
     };
 

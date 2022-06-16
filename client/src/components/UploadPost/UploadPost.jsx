@@ -32,15 +32,19 @@ const UploadPost = () => {
                 addToPosts({ ...res.data });
                 setAlert("Post Uploaded");
             })
-            .catch((err) =>
-                refreshAccessToken(() => {
-                    let tagArray = [];
-                    if (tags) {
-                        tagArray = tags.split(" ");
-                    }
-                    submitPost({ content, tags: tagArray });
-                }, setAlert)
-            );
+            .catch((err) => {
+                if (err.response?.status === 403) {
+                    refreshAccessToken(() => {
+                        let tagArray = [];
+                        if (tags) {
+                            tagArray = tags.split(" ");
+                        }
+                        submitPost({ content, tags: tagArray });
+                    }, setAlert);
+                } else {
+                    console.log(err);
+                }
+            });
     };
 
     const getBase64 = (file) => {

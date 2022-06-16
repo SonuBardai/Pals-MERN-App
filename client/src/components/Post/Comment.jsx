@@ -1,19 +1,21 @@
 import "./comment.css";
-import { FcLike } from "react-icons/fc";
-import { AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Comment = ({ comment }) => {
+    const date = new Date(comment.commentDate);
     return (
         <>
             <div className="commentContainer">
-                <img
-                    src={
-                        comment.commentor.profilePic
-                            ? `data:image/png;base64,${comment.commentor.profilePic}`
-                            : "/default.jpg"
-                    }
-                    className="postCommentPic"
-                />
+                <Link to={`/users/${comment.commentor._id}`}>
+                    <img
+                        src={
+                            comment.commentor.profilePic
+                                ? `data:image/png;base64,${comment.commentor.profilePic}`
+                                : "/default.jpg"
+                        }
+                        className="postCommentPic"
+                    />
+                </Link>
                 <div className="commentorHead">
                     <div
                         style={{
@@ -21,10 +23,16 @@ const Comment = ({ comment }) => {
                             gap: "20px",
                         }}
                     >
-                        <div className="postUsername">
-                            {comment.commentor.name}
-                        </div>
-                        <div className="postDate">29 Aug 2022</div>
+                        <Link to={`/users/${comment.commentor._id}`}>
+                            <div className="postUsername">
+                                {comment.commentor.name}
+                            </div>
+                        </Link>
+                        <div className="postDate">{`${String(
+                            date.getDate()
+                        ).padStart(2, "0")}-${String(
+                            date.getMonth() + 1
+                        ).padStart(2, "0")}-${date.getFullYear()}`}</div>
                     </div>
                     <div className="commentText">{comment.comment}</div>
                 </div>

@@ -8,13 +8,18 @@ import FilteredPosts from "./pages/FilteredPosts/FilteredPosts.jsx";
 
 import { useGlobalContext } from "./context";
 import { useEffect } from "react";
+import axios from "./axios";
 
 function App() {
     const { setUser } = useGlobalContext();
-    
+
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
+        let user = JSON.parse(localStorage.getItem("user"));
         if (user) {
+            axios
+                .get(`/users/${user._id}`)
+                .then((res) => (user = res.data))
+                .catch((err) => console.log(err));
             setUser(user);
         }
     }, []);

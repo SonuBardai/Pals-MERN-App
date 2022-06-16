@@ -21,6 +21,7 @@ const postSchema = new mongoose.Schema(
                         type: mongoose.Schema.Types.ObjectId,
                         ref: "User",
                     },
+                    commentDate: { type: Date, default: new Date() },
                 },
             ],
             default: [],

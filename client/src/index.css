@@ -17,6 +17,10 @@
     --text-2: rgb(115, 114, 114);
     --text-3: rgb(64, 63, 63);
 
+    --btn-bg-1: #38539e;
+    --btn-bg-2: #101d42;
+    --btn-text: #f6f0ed;
+
     --main-font: "Nunito", sans-serif;
 }
 

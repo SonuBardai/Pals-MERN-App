@@ -17,15 +17,13 @@
     padding: 7px 18px;
     border-radius: 12px;
     border: none;
-    color: var(--text-3);
+    background: var(--btn-text);
+    color: var(--btn-bg-1);
     display: flex;
     gap: 5px;
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
-}
-.interactBtn:hover {
-    background: var(--bg-2);
 }
 .postComment {
     display: flex;
@@ -38,6 +36,9 @@
     border: 1px solid var(--bg-2);
     border-radius: 12px;
     size: 14px;
+    background: var(--bg-1);
+    color: var(--text-1);
+    font-family: var(--main-font);
 }
 .commentField:focus {
     outline: none;

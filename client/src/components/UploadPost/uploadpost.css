@@ -24,6 +24,7 @@
     border-radius: 12px;
     background: var(--bg-1);
     font-family: var(--main-font);
+    color: var(--text-1);
 }
 .enterPostText input:focus {
     outline: none;
@@ -37,6 +38,7 @@
     padding: 12px;
     border-radius: 12px;
     background: var(--bg-1);
+    color: var(--text-1);
     font-family: var(--main-font);
 }
 .enterPostText textarea:focus {
@@ -71,4 +73,8 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
+}
+.previewImg {
+    border-radius: 12px;
+    transform: translate(-5%, 35%);
 }

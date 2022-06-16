@@ -26,6 +26,7 @@ const Search = ({ allUsers }) => {
                         className="searchField"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search for your pals..."
                     />
                     <button className="searchBtn">
                         <AiOutlineSearch className="searchBtnIcon" />

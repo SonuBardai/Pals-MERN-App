@@ -7,9 +7,20 @@ import { useEffect } from "react";
 import axios from "../../axios";
 import Search from "../Search/Search";
 import { useState } from "react";
+import { BsLightbulbOff, BsLightbulb } from "react-icons/bs";
+import { FaHandsHelping } from "react-icons/fa";
 
 const Navbar = ({ active }) => {
-    const { alert, setAlert, isLoggedIn, user, setLogout } = useGlobalContext();
+    const {
+        alert,
+        setAlert,
+        isLoggedIn,
+        user,
+        setLogout,
+        lightMode,
+        setLightMode,
+        setDarkMode,
+    } = useGlobalContext();
 
     useEffect(() => {
         setTimeout(() => {
@@ -26,6 +37,19 @@ const Navbar = ({ active }) => {
                 setAllUsers(res.data);
             })
             .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem("lightMode") !== null) {
+            const mode = JSON.parse(localStorage.getItem("lightMode"));
+            if (mode) {
+                setLightMode();
+            } else {
+                setDarkMode();
+            }
+        } else {
+            localStorage.setItem("lightMode", true);
+        }
     }, []);
 
     console.log("rendered navbar");
@@ -61,7 +85,7 @@ const Navbar = ({ active }) => {
         <>
             <nav className="navbar">
                 <Link to={"/"} className="logo">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABOElEQVRIie3UsStFYRjH8c8Vwx0YLBYjZVWKyd9gQCFZzGySgcVKsiDhz5BN7MpMiUXKgJIB9xjOe3Jyzj3XvZdB+dXpnJ73eb+/8zzneQ//+mvqww6ucYMD9OfklTD0NRg1cR1jJEDXwgtEjRi8YCtU0hNgDwX5uQZpnYbYE1bRhTImMRpy2jGHS3Hb1usxGA6xZyxhH48hVgmxRC3i3ldj5QexLVv6Gd7C8y5av8OqZlASt2MTC+gN8ZFQWYRDcesaMijSIO7Cvs3fMCA+BxFu81gtORsm6jQYCPeHWomJawWL34RP+fzY0zmsjObxHhb30FYAH8er7IRVPWiJ0tNxhI4G4YXfMz0d5+hOrY2l4MtFkFrqwUUAXYmnZSYFX2kGnqgTJ7Kl/wg8URkbuBf/0GZ/Ev4vH0l1lFJgud4hAAAAAElFTkSuQmCC" />
+                    <FaHandsHelping className="logoIcon" />
                     pals
                 </Link>
                 <ul className="navList">
@@ -109,6 +133,20 @@ const Navbar = ({ active }) => {
                         />
                         <div onMouseLeave={hideDropDown}>
                             <ul className="navProfileOptions">
+                                <li
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    Theme:{" "}
+                                    {lightMode ? (
+                                        <BsLightbulbOff onClick={setDarkMode} />
+                                    ) : (
+                                        <BsLightbulb onClick={setLightMode} />
+                                    )}
+                                </li>
+                                <hr />
                                 <Link to={`/users/${user.id}`}>
                                     <li>Profile</li>
                                 </Link>

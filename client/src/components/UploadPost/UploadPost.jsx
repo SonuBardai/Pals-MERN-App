@@ -105,9 +105,10 @@ const UploadPost = () => {
                     style={{
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: "center",
                     }}
                 >
-                    <button
+                    <div
                         onClick={(e) => {
                             e.preventDefault();
                             if (!content) {
@@ -129,19 +130,21 @@ const UploadPost = () => {
                             setImage(null);
                             setBase64("");
                         }}
-                        style={{ marginTop: "12px" }}
+                        className="btn"
                     >
                         Submit Post
-                    </button>
+                    </div>
                     {image && (
-                        <>
+                        <div
+                            style={{
+                                position: "absolute",
+                                right: "75px",
+                            }}
+                        >
                             <img
                                 src={URL.createObjectURL(image)}
                                 width={"100px"}
-                                style={{
-                                    marginTop: "12px",
-                                    borderRadius: "12px",
-                                }}
+                                className="previewImg"
                             />
                             <IoCloseCircleOutline
                                 className="closeIcon"
@@ -150,7 +153,7 @@ const UploadPost = () => {
                                     setBase64("");
                                 }}
                             />
-                        </>
+                        </div>
                     )}
                 </div>
             </form>

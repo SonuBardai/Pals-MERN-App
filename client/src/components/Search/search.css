@@ -9,6 +9,8 @@
     border-radius: 12px;
     width: 240px;
     font-family: var(--main-font);
+    background: var(--bg-1);
+    color: var(--text-1);
 }
 .searchField:focus {
     outline: none;
@@ -16,12 +18,17 @@
 .searchBtn {
     padding: 5px 8px;
     border: 0;
-    background: transparent;
+    background: var(--btn-bg-1);
     border-radius: 12px;
+    cursor: pointer;
+}
+.searchBtn:hover {
+    background: var(--btn-bg-2);
 }
 .searchBtnIcon {
     width: 20px;
     height: 20px;
+    color: var(--btn-text);
 }
 .searchedUsers {
     background: var(--white);

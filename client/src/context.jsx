@@ -11,6 +11,7 @@ export const StateProvider = ({ children }) => {
         alertCategory: "alertInfo",
         posts: [],
         isLoading: true,
+        lightMode: true,
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -50,6 +51,14 @@ export const StateProvider = ({ children }) => {
         });
     };
 
+    const setDarkMode = () => {
+        dispatch({ type: "SET_DARK_MODE" });
+    };
+
+    const setLightMode = () => {
+        dispatch({ type: "SET_LIGHT_MODE" });
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -62,6 +71,8 @@ export const StateProvider = ({ children }) => {
                 addComment,
                 setLogout,
                 likePostReducer,
+                setDarkMode,
+                setLightMode,
             }}
         >
             {children}

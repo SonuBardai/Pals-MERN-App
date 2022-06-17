@@ -15,7 +15,16 @@ import Loading from "../../components/Loading/Loading";
 
 const Profile = () => {
     const [currUser, setCurrUser] = useState(null);
-    const { setUser } = useGlobalContext();
+    const {
+        setUser,
+        setAlert,
+        alert,
+        alertCategory,
+        setPosts,
+        allPosts,
+        setAllPosts,
+    } = useGlobalContext();
+
     const [myProfile, setMyProfile] = useState(false);
 
     let { id } = useParams();
@@ -41,7 +50,24 @@ const Profile = () => {
         }
     }, [id]);
 
-    const { setAlert, alert, alertCategory } = useGlobalContext();
+    useEffect(() => {
+        if (currUser) {
+            const currUserPosts = allPosts.filter(
+                (post) => post.user._id === currUser._id
+            );
+            setPosts(currUserPosts);
+        }
+    }, [currUser]);
+
+    useEffect(() => {
+        axios
+            .get("/posts")
+            .then((res) => {
+                setAllPosts(res.data);
+                setPosts(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     const updateProfile = ({ description, image, cover }) => {
         const accessToken = localStorage.getItem("accessToken");
@@ -97,7 +123,7 @@ const Profile = () => {
                                     />
                                 )}
                             </div>
-                            <Posts user={currUser} />
+                            <Posts />
                         </div>
                     </div>
                 ) : (

@@ -11,8 +11,11 @@ export const StateProvider = ({ children }) => {
         alert: "",
         alertCategory: "alertInfo",
         posts: [],
+        allPosts: [],
         isLoading: true,
         lightMode: true,
+        homeFilter: "latest",
+        profileFilter: "posts",
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -68,6 +71,18 @@ export const StateProvider = ({ children }) => {
         dispatch({ type: "SET_ALL_USERS", payload: users });
     };
 
+    const setAllPosts = (allPosts) => {
+        dispatch({ type: "SET_ALL_POSTS", payload: allPosts });
+    };
+
+    const setHomeFilter = (filter) => {
+        dispatch({ type: "SET_HOME_FILTER", payload: filter });
+    };
+
+    const setProfileFilter = (filter) => {
+        dispatch({ type: "SET_PROFILE_FILTER", payload: filter });
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -84,6 +99,9 @@ export const StateProvider = ({ children }) => {
                 setLightMode,
                 setIsLoading,
                 setAllUsersReducer,
+                setAllPosts,
+                setHomeFilter,
+                setProfileFilter,
             }}
         >
             {children}

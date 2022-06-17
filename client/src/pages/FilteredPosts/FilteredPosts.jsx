@@ -3,9 +3,19 @@ import Posts from "../../components/Posts/Posts";
 
 import { useParams } from "react-router-dom";
 import "./filteredposts.css";
+import { useGlobalContext } from "../../context";
+import { useEffect } from "react";
 
 const FilteredPosts = () => {
     const { tag } = useParams();
+    const { setPosts, allPosts } = useGlobalContext();
+
+    useEffect(() => {
+        const newPosts = allPosts.filter((post) => {
+            return post.tags.includes(`#${tag}`);
+        });
+        setPosts(newPosts);
+    }, [tag]);
 
     return (
         <>
@@ -21,7 +31,7 @@ const FilteredPosts = () => {
                         justifyContent: "center",
                     }}
                 >
-                    <Posts tag={tag} />
+                    <Posts />
                 </div>
             </div>
         </>

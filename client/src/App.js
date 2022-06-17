@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import axios from "./axios";
 
 function App() {
-    const { setUser } = useGlobalContext();
+    const { setUser, setIsLoading } = useGlobalContext();
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user"));
@@ -21,6 +21,8 @@ function App() {
                 .then((res) => (user = res.data))
                 .catch((err) => console.log(err));
             setUser(user);
+        } else {
+            setIsLoading();
         }
     }, []);
 

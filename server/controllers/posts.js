@@ -4,7 +4,7 @@ import { User } from "../models/user.js";
 export const getPosts = async (req, res) => {
     try {
         let posts = await Post.find({})
-            .sort("-updatedAt")
+            .sort("-createdAt")
             .populate("user")
             .populate("comments.commentor");
         return res.status(200).json(posts);
@@ -114,4 +114,15 @@ export const likePost = async (req, res) => {
     }
 };
 
-export const dislikePost = async (req, res) => {};
+export const getPopularPosts = async (req, res) => {
+    try {
+        const posts = await Post.find({})
+            .sort("-likes")
+            .populate("user")
+            .populate("comments.commentor");
+        return res.json(posts);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+};

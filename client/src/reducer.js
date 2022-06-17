@@ -107,6 +107,15 @@ export const reducer = (state, action) => {
         case "SET_ALL_USERS":
             return { ...state, allUsers: action.payload };
 
+        case "SET_ALL_POSTS":
+            return { ...state, allPosts: action.payload };
+
+        case "SET_HOME_FILTER":
+            return { ...state, homeFilter: action.payload };
+
+        case "SET_PROFILE_FILTER":
+            return { ...state, profileFilter: action.payload };
+
         default:
             return state;
     }

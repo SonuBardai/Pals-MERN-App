@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Posts from "../../components/Posts/Posts";
-import Filter from "../../components/Filter/Filter";
+import HomeFilter from "../../components/Filter/HomeFilter";
 import Alert from "../../components/Alert/Alert";
 import Loading from "../../components/Loading/Loading";
 
@@ -9,15 +9,28 @@ import "./home.css";
 import { useGlobalContext } from "../../context";
 import Hero from "../../components/Hero/Hero";
 import UploadPost from "../../components/UploadPost/UploadPost";
+import axios from "../../axios";
+import { useEffect } from "react";
 
 const Home = () => {
-    const { alert, alertCategory, isLoggedIn, isLoading, setIsLoading } =
-        useGlobalContext();
+    const {
+        alert,
+        alertCategory,
+        isLoggedIn,
+        isLoading,
+        setAllPosts,
+        setPosts,
+    } = useGlobalContext();
 
-    // This is causing an error in the console.
-    if (!isLoggedIn) {
-        setIsLoading();
-    }
+    useEffect(() => {
+        axios
+            .get("/posts")
+            .then((res) => {
+                setAllPosts(res.data);
+                setPosts(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
         <>
@@ -34,7 +47,7 @@ const Home = () => {
                 )}
                 <div className="content">
                     <div className="sideBarContainer">
-                        <Filter />
+                        <HomeFilter />
                     </div>
                     <Posts />
                 </div>

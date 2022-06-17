@@ -75,7 +75,6 @@ const PostInteract = ({ postId, likes, comments }) => {
             )
             .then((res) => {
                 likePostReducer({ postId, userId, myAction: action });
-                console.log("Before dislike: ", user.likedPosts);
                 if (action === "like") {
                     user.likedPosts.push(postId);
                 } else {
@@ -83,8 +82,6 @@ const PostInteract = ({ postId, likes, comments }) => {
                         (post) => post !== postId
                     );
                     user.likedPosts = newLikedPosts;
-                    console.log("After dislike: ", user.likedPosts);
-                    console.log("post disliked: ", postId);
                 }
                 setUser(user);
             })

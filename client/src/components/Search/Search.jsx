@@ -12,10 +12,7 @@ const Search = ({ allUsers }) => {
             user.name.toLowerCase().includes(search)
         );
         setUsers(results);
-        console.log("searchbar useeffect", search, results, allUsers);
     }, [search]);
-
-    console.log("rendered search component");
 
     return (
         <>
@@ -37,8 +34,8 @@ const Search = ({ allUsers }) => {
                     <div className="searchedUsers">
                         {users &&
                             users.map((user) => (
-                                <Link to={`/users/${user._id}`}>
-                                    <SearchUser user={user} key={user._id} />
+                                <Link to={`/users/${user._id}`} key={user._id}>
+                                    <SearchUser user={user} />
                                 </Link>
                             ))}
                     </div>

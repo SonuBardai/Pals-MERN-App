@@ -34,7 +34,6 @@ const Login = () => {
                         "accessToken",
                         response.data.accessToken
                     );
-                    console.log("Logged in as User: ", response.data);
                     localStorage.setItem(
                         "user",
                         JSON.stringify({

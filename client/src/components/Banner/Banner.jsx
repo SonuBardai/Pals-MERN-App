@@ -18,8 +18,6 @@ const Banner = ({ myProfile, updateProfile, user }) => {
         setCover(user.coverPic);
     }, [user]);
 
-    console.log("render banner");
-
     const showEditable = () => {
         document.getElementsByClassName("editDescription")[0].style.display =
             "block";

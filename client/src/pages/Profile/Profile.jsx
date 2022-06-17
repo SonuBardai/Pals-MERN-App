@@ -41,8 +41,6 @@ const Profile = () => {
         }
     }, [id]);
 
-    console.log("render profile");
-
     const { setAlert, alert, alertCategory } = useGlobalContext();
 
     const updateProfile = ({ description, image, cover }) => {
@@ -92,7 +90,12 @@ const Profile = () => {
                         <div className="content">
                             <div className="sideBarContainer">
                                 <Filter />
-                                <RecBar />
+                                {!myProfile && (
+                                    <RecBar
+                                        currUser={user}
+                                        profileOf={currUser}
+                                    />
+                                )}
                             </div>
                             <Posts user={currUser} />
                         </div>

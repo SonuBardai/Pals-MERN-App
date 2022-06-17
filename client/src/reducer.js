@@ -68,10 +68,6 @@ export const reducer = (state, action) => {
         case "SET_DARK_MODE":
             localStorage.setItem("lightMode", false);
 
-            // root.style.setProperty("--white", "#191919");
-            // root.style.setProperty("--bg-1", "#0F0E0E");
-            // root.style.setProperty("--bg-2", "#232323");
-            // root.style.setProperty("--bg-3", "#333333");
             root.style.setProperty("--white", "#0c121c");
             root.style.setProperty("--bg-1", "#161d27");
             root.style.setProperty("--bg-2", "#202a38");
@@ -103,21 +99,13 @@ export const reducer = (state, action) => {
             root.style.setProperty("--text-2", "rgb(115, 114, 114)");
             root.style.setProperty("--text-3", "rgb(64, 63, 63)");
 
-            /*
-    --white: #fff;
-    --bg-1: #f6f0ed;
-    --bg-2: #d2cecc;
-    --bg-3: #aca8a6;
-
-    --highlight-1: #38539e;
-    --highlight-2: #101d42;
-
-    --text-1: rgb(18, 18, 18);
-    --text-2: rgb(115, 114, 114);
-    --text-3: rgb(64, 63, 63);
-*/
-
             return { ...state, lightMode: true };
+
+        case "SET_IS_LOADING":
+            return { ...state, isLoading: false };
+
+        case "SET_ALL_USERS":
+            return { ...state, allUsers: action.payload };
 
         default:
             return state;

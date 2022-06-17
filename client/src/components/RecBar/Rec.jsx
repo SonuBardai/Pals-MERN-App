@@ -1,21 +1,33 @@
 import { BsFillPersonCheckFill, BsFillPersonPlusFill } from "react-icons/bs";
+import { BiUser } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
-const Rec = () => {
-	return (
-		<>
-			<div className="recContainer">
-				<img
-					src="https://images.unsplash.com/photo-1533931993121-c6668a1c6bfa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=498&q=80"
-					className="recProfilePic"
-				/>
-				<div className="postUsername">John Doe</div>
-				<button className="btn">
-					<BsFillPersonPlusFill />
-					<span>Follow</span>
-				</button>
-			</div>
-		</>
-	);
+const Rec = ({ user }) => {
+    return (
+        <>
+            <Link to={`/users/${user._id}`}>
+                <div className="recContainer">
+                    <img
+                        src={`data:image/png;base64,${user.profilePic}`}
+                        className="recProfilePic"
+                    />
+                    <div className="postUsername">{user.name}</div>
+                    <button
+                        className="btn"
+                        onClick={() => {
+                            document.body.scrollTop = 0;
+                            document.documentElement.scrollTop = 0;
+                        }}
+                    >
+                        <span>
+                            <BiUser style={{marginRight: "5px"}} />
+                            Profile
+                        </span>
+                    </button>
+                </div>
+            </Link>
+        </>
+    );
 };
 
 export default Rec;

@@ -20,6 +20,7 @@ const Navbar = ({ active }) => {
         lightMode,
         setLightMode,
         setDarkMode,
+        setAllUsersReducer,
     } = useGlobalContext();
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const Navbar = ({ active }) => {
             .get("/users/")
             .then((res) => {
                 setAllUsers(res.data);
+                setAllUsersReducer(res.data);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -51,8 +53,6 @@ const Navbar = ({ active }) => {
             localStorage.setItem("lightMode", true);
         }
     }, []);
-
-    console.log("rendered navbar");
 
     const dropDown = document.getElementsByClassName("navProfileOptions")[0];
 

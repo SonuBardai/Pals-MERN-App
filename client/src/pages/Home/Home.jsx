@@ -11,7 +11,13 @@ import Hero from "../../components/Hero/Hero";
 import UploadPost from "../../components/UploadPost/UploadPost";
 
 const Home = () => {
-    const { alert, alertCategory, isLoggedIn, isLoading } = useGlobalContext();
+    const { alert, alertCategory, isLoggedIn, isLoading, setIsLoading } =
+        useGlobalContext();
+
+    // This is causing an error in the console.
+    if (!isLoggedIn) {
+        setIsLoading();
+    }
 
     return (
         <>

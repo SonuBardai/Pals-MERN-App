@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    color: var(--white);
+    color: var(--text-1);
     padding: 10rem 0;
 }
 .heroLogo {

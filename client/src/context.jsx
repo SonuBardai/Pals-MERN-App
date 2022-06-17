@@ -6,6 +6,7 @@ export const AppContext = createContext();
 export const StateProvider = ({ children }) => {
     const initialState = {
         user: null,
+        allUsers: [],
         isLoggedIn: false,
         alert: "",
         alertCategory: "alertInfo",
@@ -59,6 +60,14 @@ export const StateProvider = ({ children }) => {
         dispatch({ type: "SET_LIGHT_MODE" });
     };
 
+    const setIsLoading = () => {
+        dispatch({ type: "SET_IS_LOADING" });
+    };
+
+    const setAllUsersReducer = (users) => {
+        dispatch({ type: "SET_ALL_USERS", payload: users });
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -73,6 +82,8 @@ export const StateProvider = ({ children }) => {
                 likePostReducer,
                 setDarkMode,
                 setLightMode,
+                setIsLoading,
+                setAllUsersReducer,
             }}
         >
             {children}

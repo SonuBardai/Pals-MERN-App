@@ -10,7 +10,7 @@
     <br>
 
 -   Profile page filters, recommendations, and posts.
-    ![profile_filters](./Screenshots/img-3.png)
+    ![profile_filters](./Screenshots/img3.png)
     <br>
 
 -   Upload posts from the Home page.

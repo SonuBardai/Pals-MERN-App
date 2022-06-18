@@ -23,6 +23,7 @@ const Profile = () => {
         setPosts,
         allPosts,
         setAllPosts,
+        isLoggedIn,
     } = useGlobalContext();
 
     const [myProfile, setMyProfile] = useState(false);
@@ -115,8 +116,8 @@ const Profile = () => {
                         />
                         <div className="content">
                             <div className="sideBarContainer">
-                                <Filter />
-                                {!myProfile && (
+                                <Filter user={currUser} />
+                                {isLoggedIn && !myProfile && (
                                     <RecBar
                                         currUser={user}
                                         profileOf={currUser}

@@ -103,6 +103,7 @@
     background: var(--bg-1);
     font-family: var(--main-font);
     margin-left: 150px;
+    color: var(--text-1);
 }
 .editDescText:focus {
     outline: none;

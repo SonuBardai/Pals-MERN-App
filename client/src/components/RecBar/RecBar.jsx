@@ -4,6 +4,7 @@ import "./recbar.css";
 
 const RecBar = ({ currUser, profileOf }) => {
     const { allUsers } = useGlobalContext();
+
     const recUsers = allUsers.filter((user) => {
         return user._id !== currUser._id && user._id !== profileOf._id;
     });

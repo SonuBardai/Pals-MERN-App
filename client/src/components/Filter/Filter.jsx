@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useGlobalContext } from "../../context";
 import "./filter.css";
 
-const Filter = () => {
-    const { posts, profileFilter, setProfileFilter, allPosts, setPosts, user } =
+const Filter = ({ user }) => {
+    const { posts, profileFilter, setProfileFilter, allPosts, setPosts } =
         useGlobalContext();
 
     useEffect(() => {

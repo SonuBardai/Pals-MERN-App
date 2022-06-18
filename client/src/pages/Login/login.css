@@ -41,15 +41,15 @@
     background: var(--bg-2);
     border-radius: 12px;
     font-family: var(--main-font);
+    font-weight: 800;
     color: var(--text-1);
 }
 .input-group input[type="button"] {
     background: var(--highlight-1);
-    color: var(--white);
+    color: #fff;
     cursor: pointer;
     transition: 0.3s;
     font-family: var(--main-font);
-    color: var(--text-1);
 }
 .input-group input[type="button"]:hover {
     background: var(--highlight-2);

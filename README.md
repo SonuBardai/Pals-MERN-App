@@ -3,18 +3,22 @@
 -   This is a complete full-stack social media web-application developed using the MERN stack.
 
 ## Screenshots:
-- User Profile Themes.
-![light_profile](./Screenshots/img1.png)
-![dark_profile](./Screenshots/img2.png)
-<br>
-- Profile page filters, recommendations, and posts.
-![profile_filters](./Screenshots/img3.png)
-<br>
-- Upload posts from the Home page.
-![home_page](./Screenshots/img4.png)
-<br>
-- Interact with posts with Likes and Comments.
-![post](./Screenshots/img5.png)
+
+-   User Profile Themes.
+    ![light_profile](./Screenshots/img1.png)
+    ![dark_profile](./Screenshots/img2.png)
+    <br>
+
+-   Profile page filters, recommendations, and posts.
+    ![profile_filters](./Screenshots/img3.png)
+    <br>
+
+-   Upload posts from the Home page.
+    ![home_page](./Screenshots/img4.png)
+    <br>
+
+-   Interact with posts with Likes and Comments.
+    ![post](./Screenshots/img5.png)
 
 ## Features:
 
